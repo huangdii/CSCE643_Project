@@ -1,1 +1,2 @@
-# CSCE643_Project
+# Mobile Robot Project
+## CSCE 643 final project
