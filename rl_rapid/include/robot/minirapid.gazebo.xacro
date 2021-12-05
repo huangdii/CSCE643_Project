@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<robot name="minirapid1_sim" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:arg name="laser_visual"  default="false"/>
+  <xacro:arg name="camera_visual" default="false"/>
+  <xacro:arg name="imu_visual"    default="false"/>
+
+  <gazebo reference="base_link">
+    <!--base_link(caster) collision coeff, revised 210120, jiyoonh-->
+    <mu1>0.00000001</mu1>
+    <mu2>0.00000001</mu2>
+    <kp>1000.0</kp>
+    <kd>1000.0</kd>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="left_wheel_link">
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <kp>10000000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>0 0 -1</fdir1>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="right_wheel_link">
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <kp>10000000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>0 0 -1</fdir1>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+
+  <gazebo reference="imu_link">
+    <sensor type="imu" name="imu">
+      <always_on>false</always_on>
+      <visualize>$(arg imu_visual)</visualize>
+    </sensor>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="minirapid1_controller" filename="libgazebo_ros_diff_drive.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometrySource>world</odometrySource>
+      <publishOdomTF>true</publishOdomTF>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <publishWheelTF>false</publishWheelTF>
+      <publishTf>true</publishTf>
+      <publishWheelJointState>true</publishWheelJointState>
+      <legacyMode>false</legacyMode>
+      <updateRate>30</updateRate>
+      <leftJoint>left_wheel_joint</leftJoint>
+      <rightJoint>right_wheel_joint</rightJoint>
+      <wheelSeparation>0.2185</wheelSeparation>
+      <wheelDiameter>0.1</wheelDiameter>
+      <wheelAcceleration>1</wheelAcceleration>
+      <wheelTorque>100</wheelTorque>
+      <rosDebugLevel>na</rosDebugLevel>
+    </plugin>
+  </gazebo>
+
+
+  <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+      <topicName>imu</topicName>
+      <serviceName>imu_service</serviceName>
+      <frameName>imu_link</frameName>
+      <bodyName>imu_link</bodyName>
+      <gaussianNoise>0</gaussianNoise>
+      <rpyOffsets>0 0 0</rpyOffsets>
+      <updateRate>200.0</updateRate>
+      <alwaysOn>true</alwaysOn>
+      <gaussianNoise>0.0</gaussianNoise>
+      <imu>
+	<noise>
+	  <type>gaussian</type>
+	  <rate>
+	    <mean>0.0</mean>
+	    <stddev>2e-4</stddev>
+	    <bias_mean>0.0000075</bias_mean>
+	    <bias_stddev>0.0000008</bias_stddev>
+	  </rate>
+	  <accel>
+	    <mean>0.0</mean>
+	    <stddev>1.7e-2</stddev>
+	    <bias_mean>0.1</bias_mean>
+	    <bias_stddev>0.001</bias_stddev>
+	  </accel>
+	</noise>
+      </imu>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="laser">
+   <material>Gazebo/DarkGrey</material>
+   <sensor type="gpu_ray" name="head_rplidar_sensor">
+     <visualize>$(arg laser_visual)</visualize>
+     <update_rate>40</update_rate>
+     <ray>
+       <scan>
+         <horizontal>
+           <samples>720</samples>
+           <resolution>1</resolution>
+           <min_angle>-3.14159265</min_angle>
+           <max_angle>3.14159265</max_angle>
+         </horizontal>
+       </scan>
+       <range>
+         <min>0.2</min>
+         <max>25.0</max>
+         <resolution>0.01</resolution>
+       </range>
+       <noise>
+         <type>gaussian</type>
+         <mean>0.0</mean>
+         <stddev>0.01</stddev>
+       </noise>
+     </ray>
+     <plugin name="gazebo_ros_head_rplidar_controller" filename="libgazebo_ros_gpu_laser.so">
+       <topicName>scan</topicName>
+       <frameName>laser</frameName>
+     </plugin>
+   </sensor>
+ </gazebo >
+
+
+</robot>

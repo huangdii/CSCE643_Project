@@ -1,0 +1,221 @@
+<?xml version="1.0" ?>
+<robot name="minirapid1" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find rl_rapid)/include/robot/common_properties.xacro"/>
+  <xacro:include filename="$(find rl_rapid)/include/robot/minirapid.gazebo.xacro"/>
+
+  <!--link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <origin
+      xyz="0 0 0.0300966458009868"
+      rpy="0 0 0" />
+    <parent
+      link="base_footprint" />
+    <child
+      link="base_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint-->
+
+  <link name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00650598221527032 0.00229634450571022 0.0861670730474653"
+        rpy="0 0 0" />
+      <mass
+        value="4.33062154313249" />
+      <inertia
+        ixx="0.0790040090412495"
+        ixy="-0.00256549544866553"
+        ixz="-0.00146313559961903"
+        iyy="0.186087021403916"
+        iyz="-0.000786331607197728"
+        izz="0.234961192817118" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rapid/urdf/meshes/minirapid1/base_link.STL" />
+      </geometry>
+      <material name="grey">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rapid/urdf/meshes/minirapid1/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <origin xyz="0 0.147 0.019926"
+      rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="left_wheel_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+
+  <link name="left_wheel_link">
+    <inertial>
+      <origin
+        xyz="4.66293670342566E-15 -0.0305 -0.000522969789136657"
+        rpy="0 0 0" />
+      <mass
+        value="0.149150016733407" />
+      <inertia
+        ixx="0.000103004096524672"
+        ixy="4.36568849441056E-19"
+        ixz="2.64077718596163E-19"
+        iyy="0.000183918976866177"
+        iyz="-3.58272550910083E-19"
+        izz="0.000103004096524671" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rapid/urdf/meshes/minirapid1/left_wheel_link.STL" />
+      </geometry>
+      <material
+        name="black">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rapid/urdf/meshes/minirapid1/left_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <origin
+      xyz="0 -0.147 0.019926"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+
+  <link name="right_wheel_link">
+    <inertial>
+      <origin
+        xyz="5.32907051820075E-15 0.0305 -0.000522969789136934"
+        rpy="0 0 0" />
+      <mass
+        value="0.149150016733407" />
+      <inertia
+        ixx="0.000103004096524672"
+        ixy="-1.28926221761637E-19"
+        ixz="-2.61080903121316E-19"
+        iyy="0.000183918976866177"
+        iyz="3.47998819517413E-19"
+        izz="0.000103004096524671" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rapid/urdf/meshes/minirapid1/right_wheel_link.STL" />
+      </geometry>
+      <material
+        name="black">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rapid/urdf/meshes/minirapid1/right_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+
+  <joint name="rplidar_joint" type="fixed">
+    <origin
+      xyz="0.24997 0.11002 0.19565"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="laser" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <link name="laser">
+    <inertial>
+      <origin
+        xyz="-0.00105134047928745 -0.000900283053485731 -0.0102612743782637"
+        rpy="0 0 0" />
+      <mass
+        value="0.0764074110658066" />
+      <inertia
+        ixx="2.64429118315361E-05"
+        ixy="1.09596059550054E-06"
+        ixz="1.77367768412832E-08"
+        iyy="2.59904733259174E-05"
+        iyz="1.44000295483592E-08"
+        izz="4.72874256940088E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rapid/urdf/meshes/minirapid1/rplidar_link.STL" />
+      </geometry>
+      <material
+        name="dark">
+        <color
+          rgba="0.309803921568627 0.309803921568627 0.309803921568627 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rapid/urdf/meshes/minirapid1/rplidar_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0.0 0 0.089" rpy="0 0 0"/>
+  </joint>
+  <link name="imu_link"/> 
+
+</robot>
