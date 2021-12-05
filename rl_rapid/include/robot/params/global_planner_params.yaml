@@ -1,0 +1,8 @@
+# Global Planner Parameters
+
+BaseGlobalPlanner:
+  allow_unknown: false
+  use_dijkstra: false # use A* instead
+  use_quadratic: true # do not use quadratic potential 
+  use_grid_path: false
+  old_navfn_behavior: false

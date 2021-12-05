@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_node" clear_params="true">
+    <rosparam command="load" file="$(find rapid)/launch/cases/case1-3/ekf.yaml" />
+
+    <!--  Placeholder for output topic remapping-->
+    <remap from="odometry/filtered" to="odom_ekf"/>
+  </node>
+</launch>
+
+

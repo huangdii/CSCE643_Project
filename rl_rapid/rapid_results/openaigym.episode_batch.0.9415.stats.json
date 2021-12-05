@@ -1,0 +1,1 @@
+{"initial_reset_timestamp": 1638742777.7030194, "timestamps": [1638742780.5924604, 1638742788.0073953, 1638742797.6423683], "episode_lengths": [7, 20, 2], "episode_rewards": [-170.0, -161.0, -195.0], "episode_types": ["t", "t", "t"]}
