@@ -1,11 +1,11 @@
 <!--?xml version="1.0"?-->
 <launch>
-  <arg name="x_pos" default="0.0"/>
-  <arg name="y_pos" default="0.0"/>
+  <arg name="x_pos" default="-2.5"/>
+  <arg name="y_pos" default="-0.3"/>
   <arg name="z_pos" default="0.0"/>
 
   <include file="$(find rl_rapid)/include/robot/empty_world.launch">
-    <arg name="world_name" value="$(find rapid)/launch/cases/case1-3/sim-lab.world"/>
+    <arg name="world_name" value="$(find rl_rapid)/include/robot/sim-lab.world"/>
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="true"/>
