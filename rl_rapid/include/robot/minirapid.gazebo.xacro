@@ -38,7 +38,7 @@
 
   <gazebo reference="imu_link">
     <sensor type="imu" name="imu">
-      <always_on>false</always_on>
+      <always_on>true</always_on>
       <visualize>$(arg imu_visual)</visualize>
     </sensor>
     <material>Gazebo/Grey</material>
@@ -76,7 +76,7 @@
       <bodyName>imu_link</bodyName>
       <gaussianNoise>0</gaussianNoise>
       <rpyOffsets>0 0 0</rpyOffsets>
-      <updateRate>200.0</updateRate>
+      <updateRate>40.0</updateRate>
       <alwaysOn>true</alwaysOn>
       <gaussianNoise>0.0</gaussianNoise>
       <imu>

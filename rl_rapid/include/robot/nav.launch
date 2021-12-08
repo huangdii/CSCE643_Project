@@ -2,12 +2,12 @@
 <launch>
 
   <!-- Arguments -->
-  <arg name="map_file" default="$(find rapid)/maps/lab_0119_2.yaml"/>
+  <arg name="map_file" default="$(find rl_rapid)/include/robot/lab_0119_2.yaml"/>
   <arg name="open_rviz" default="true"/>
   <arg name="move_forward_only" default="false"/>
 
   <!-- minirapid1 model -->
-  <include file="$(find rapid)/launch/cases/case1-3/bringup.launch"/>
+  <include file="$(find rl_rapid)/include/robot/bringup.launch"/>
 
   <!-- Map server -->
   <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
@@ -15,7 +15,7 @@
 
   <!-- odom_combined -->
   <!--(1) robot_pose_ekf -->
-  <include file="$(find rapid)/launch/cases/case1-3/robot_pose_ekf.launch" />
+  <include file="$(find rl_rapid)/include/robot/robot_pose_ekf.launch" />
   <node pkg="rapid" type="robot_pose_ekf_odom.py" name="transform_odom_ekf" />
 
   <!--(2) robot_localization -->
@@ -23,21 +23,21 @@
 
 
   <!-- AMCL -->
-  <include file="$(find rapid)/launch/cases/case1-3/amcl.launch">
+  <include file="$(find rl_rapid)/include/robot/amcl.launch">
      <arg name="initial_pose_x" value="0.0"/>
      <arg name="initial_pose_y" value="0.0"/>
      <arg name="initial_pose_a" value="0.0"/>
   </include>
 
   <!-- move_base -->
-  <include file="$(find rapid)/launch/cases/case1-3/move_base.launch">
+  <include file="$(find rl_rapid)/include/robot/move_base.launch">
     <arg name="move_forward_only" value="$(arg move_forward_only)"/>
   </include>
 
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
-          args="-d $(find rapid)/launch/cases/case1-3/rviz.rviz"/>
+          args="-d $(find rl_rapid)/include/robot/rviz.rviz"/>
   </group>
 
 </launch>
