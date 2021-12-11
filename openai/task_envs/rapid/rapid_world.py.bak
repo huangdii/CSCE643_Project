@@ -186,6 +186,8 @@ class RapidWorldEnv(rapid_env.RapidEnv):
         if not done:
             if self.last_action == "FORWARDS":
                 reward = self.forwards_reward
+            elif self.last_action == "TURN_LEFT":
+                reward = self.turn_reward * 3
             else:
                 reward = self.turn_reward
         else:
