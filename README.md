@@ -1,5 +1,5 @@
 # Mobile Robot Project - TAMU CSCE 643 
-# Comparison between Dynamic Window Approach based navigation and Reinforcement Learning based navigation
+### Comparison between Dynamic Window Approach based navigation and Reinforcement Learning based navigation
 
 ## Download ROS full Packages 
 - Ubuntu 18.04 | ROS Melodic full package including Gazebo
