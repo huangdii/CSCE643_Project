@@ -1,4 +1,5 @@
-# Mobile Robot Project - Comparison between Dynamic Window Approach based navigation and Reinforcement Learning based navigation
+# Mobile Robot Project - TAMU CSCE 643 
+# Comparison between Dynamic Window Approach based navigation and Reinforcement Learning based navigation
 
 ## Download ROS full Packages 
 - Ubuntu 18.04 | ROS Melodic full package including Gazebo
@@ -32,6 +33,7 @@ $ python ~/rl_rapid/src/plot.py
 
 ## Dynamic Window Approach based Navigation without a global map
 ```bash
-$ (term1) roslaunch rl_rapid rapid_gazebo.launch
-$ (term2) roslaunch rl_rapid nav_blankmap.launch
+$ (term1) roslaunch rl_rapid rapid_gazebo.launch    // setup gazebo simulator
+$ (term2) roslaunch rl_rapid nav_blankmap.launch    // make the robot move using rviz
+$ (term3) python ~/rl_rapid/src/waypoint_nav.py     // set the goal position and make the robot go to there
 ``` 
